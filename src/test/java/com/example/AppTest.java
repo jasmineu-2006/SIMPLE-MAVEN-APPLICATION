@@ -1,15 +1,38 @@
 package com.example;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class AppTest {
 
+    App calculator = new App();
+
     @Test
+    void testAdd() {
+        assertEquals(15, calculator.add(10, 5));
+    }
 
-    public void testAdd() {
+    @Test
+    void testSubtract() {
+        assertEquals(5, calculator.subtract(10, 5));
+    }
 
-        App app = new App();
+    @Test
+    void testMultiply() {
+        assertEquals(50, calculator.multiply(10, 5));
+    }
 
-        assertEquals(5, app.add(2, 3));
+    @Test
+    void testDivide() {
+        assertEquals(2.0, calculator.divide(10, 5));
+    }
 
+    @Test
+    void testDivideByZero() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            calculator.divide(10, 0);
+        });
+
+        assertEquals("Cannot divide by zero", exception.getMessage());
     }
 }
